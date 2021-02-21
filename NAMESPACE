@@ -1,0 +1,5 @@
+useDynLib(DCDencode, .registration = TRUE)
+exportClasses(sadata)
+export(encode)
+export(kabsch_C)
+export(kabsch_R)
