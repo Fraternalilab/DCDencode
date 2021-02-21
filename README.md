@@ -40,12 +40,13 @@ The first argument must be the reference PDB structure.
 The second argument must be the DCD trajectory.
 The third argument is an optional conformation increment that will be
 added to the number of the first conformation, which is always '1'.
-The specified DCD trajectory will will be encoded into a
+The specified DCD trajectory will be encoded into a
 '<structure\_name>.<trajectory\_name>.sasta' file
 containing one SA sequence per trajectory conformation in FASTA-type format.
 The format of SA sequence headers is \<ID\>|\<conformation\>,
 where ID is a dot-separated structure and trajectory name,
-while conformations are simply numbered from 1 to N (= total number of conformations).
+while conformations are numbered from 1 to N (= total number of conformations),
+plus the conformation increment (default = 0).
 
 
 #### Copyright Holders, Authors and Maintainers 
