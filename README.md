@@ -1,4 +1,4 @@
-## DCDencode: Encode DCD Trajectory using a Structural Alphabet 
+## DCDencode: Encode DCD trajectory into Structural Alphabet sequences
 [![release](https://img.shields.io/badge/release-v0.1-green?logo=github)](https://github.com/Fraternalilab/DCDencode)
 
 The package provides the functionality to encode a given trajectory
@@ -34,12 +34,12 @@ install_github("Fraternalilab/DCDencode")
 ## Usage
 Run the script *Rscripts/pdbencode.R* in the directory containing PDB file(s):
 ```{sh}
-Rscript pdbencode.R 
+Rscript pdbencode.R <structure_name>.pdb <trajectory_name>.dcd
 ```
-The PDB file (with extension ".pdb") and trajectory (".dcd") in that directory
-will be processed.
-The trajectory yields an encoded \<ID\>_sa.fasta file containing
-one SA sequence per chain. The format of SA sequence headers is \<ID\>|\<snapshot\>.
+The specified PDB file and DCD trajectory will be processed.
+The trajectory yields an encoded <structure\_name>.<trajectory\_name>.sasta file
+containing one SA sequence per trajectory conformation.
+The format of SA sequence headers is \<ID\>|\<conformation\>.
 
 #### Copyright Holders, Authors and Maintainers 
 - 2021 Jens Kleinjung (author, maintainer) jens@jkleinj.eu
