@@ -34,12 +34,12 @@ install_github("Fraternalilab/DCDencode")
 ## Usage
 Run the script *Rscripts/pdbencode.R* in the directory containing PDB file(s):
 ```{sh}
-Rscript pdbencode.R <structure_name>.pdb <trajectory_name>.dcd confInc
+Rscript pdbencode.R <structure_name>.pdb <trajectory_name>.dcd <confInc>
 ```
 The first argument must be the reference PDB structure.
 The second argument must be the DCD trajectory.
-The third argument is an optional conformation increment that will be
-added to the number of the first conformation, which is always '1'.
+The third argument <confInc> is an optional conformation increment (integer)
+that will be added to the number of the first conformation, which is always '1'.
 The specified DCD trajectory will be encoded into a
 '<structure\_name>.<trajectory\_name>.sasta' file
 containing one SA sequence per trajectory conformation in FASTA-type format.
