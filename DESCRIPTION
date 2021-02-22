@@ -1,6 +1,6 @@
 Package: DCDencode
 Type: Package
-Version: 0.1
+Version: 0.2
 Title: Encode DCD trajectory into Structural Alphabet sequences 
 Authors@R: c(person("Jens", "Kleinjung", role  = c("aut", "cre", "cph"),
                      email = "jens@jkleinj.eu"),
