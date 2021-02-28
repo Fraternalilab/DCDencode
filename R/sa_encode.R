@@ -10,6 +10,8 @@
 #' (lowest RMSD) fragment in each case.
 #===============================================================================
 
+library("pbapply")
+
 #_______________________________________________________________________________
 #' sadata: An S4 class for Structural Alphabet (SA) data.
 #' @slot fragment_letters: Prototype fragment letters forming SA.
@@ -73,8 +75,10 @@ encode = function(traj.xyz) {
 	nConfFrag = (dim(traj.xyz)[2] / 3) - 3;
 	nSAFrag = length(sadata_o@fragment_coordinates);
 	
+	## print progress bar also from RScript
+	pbo = pboptions(type = "txt")
 	## for each conformation (= row) in the trajectory (xyz matrix)
-	sa_ali.v = apply(traj.xyz, 1, function(traj_conf.xyz) {
+	sa_ali.v = pbapply::pbapply(traj.xyz, 1, function(traj_conf.xyz) {
 	  ## fit all conformation fragments to all alphabet fragments
  	  ## for N-3 input structure fragments
  	  rmsd_m = sapply(1:nConfFrag, function(x) {

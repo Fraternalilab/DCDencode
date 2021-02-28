@@ -1,4 +1,8 @@
 # Revision History of DCDencode Package 
+- 0.3
+Sun 28 Feb 13:36:57 GMT 2021
+	Improvements in Rscript and progress bars
+
 - 0.2
 Mon 22 Feb 18:57:12 GMT 2021
 	Package Rchecked and with man pages

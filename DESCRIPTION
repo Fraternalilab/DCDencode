@@ -1,6 +1,6 @@
 Package: DCDencode
 Type: Package
-Version: 0.2
+Version: 0.3
 Title: Encode DCD trajectory into Structural Alphabet sequences 
 Authors@R: c(person("Jens", "Kleinjung", role  = c("aut", "cre", "cph"),
                      email = "jens@jkleinj.eu"),
@@ -11,7 +11,7 @@ Description: The package reads a protein structure with trajectory
   and encodes the trajectory using prototypical fragments (letters)
   of a structural alphabet.
 Depends: R (>= 3.4)
-Imports: bio3d (>= 2.3), methods
+Imports: bio3d (>= 2.3), pbapply (>= 1.4), methods
 Suggests: knitr, rmarkdown
 Collate: generic.R kabsch.R kabsch_C.R sa_encode.R
 License: GPL-3
