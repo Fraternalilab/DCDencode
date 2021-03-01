@@ -1,5 +1,5 @@
 ## DCDencode: Encode DCD trajectory into Structural Alphabet sequences
-[![release](https://img.shields.io/badge/release-v0.1-green?logo=github)](https://github.com/Fraternalilab/DCDencode)
+[![release](https://img.shields.io/badge/release-v0.3-green?logo=github)](https://github.com/Fraternalilab/DCDencode)
 
 The package provides the functionality to encode a given trajectory
 into Structural Alphabet (SA) strings.
