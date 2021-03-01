@@ -1,5 +1,6 @@
 #===============================================================================
 # DCDencode 
+# dcdencode.R
 # Read PDB structure and trajectory in local directory
 # Encode trajectory and write SA strings as FASTA format
 #===============================================================================
@@ -8,27 +9,37 @@ library("DCDencode")
 library("bio3d")
 library("pbapply")
 
-## command line arguments
-## argument [1] is input structure
-## argument [2] is input trajectory
-## argument [3] is conformation increment
-args = commandArgs(trailingOnly = TRUE)
-
+#_______________________________________________________________________________
 ## by default no conformation increment (first conformation is '1 + confInc')
 confInc = 0
 
-#_______________________________________________________________________________
+## command line arguments
+args = commandArgs(trailingOnly = TRUE)
 ## argument [1] is input structure
-#args[1] = "/mnt/databases/MD/PKM2/3BJT_monomer_apo/md0/3BJT_md0_ca.pdb"
+str = as.character(args[1])
+## argument [2] is input trajectory
+traj = as.character(args[2]) 
+## argument [3] is conformation increment if trajectory has been split
+confInc = abs(as.integer(args[3]))
 
-if (! is.na(args[1])) {
-  str = args[1]
-  message("  The atom order and number of the input structure and input trajectory must match.\
-  Please note that potential mis-matches are unlikely to be detected by DCDencode.")
-} else {
-  stop("Need input structure as first argument! Usage:\
-  'Rscript dcdencode.R <str> <traj> <confInc>'")
-}
+error = tryCatch(stopifnot(nchar(args[1]) < 1, nchar(args[2]) < 1),
+  error = function(e) {
+    ## stopifnot error message
+    message(e)
+    ## usage message
+    message("\nUsage: 'Rscript dcdsplit.R <str> <traj> <confInc>'")
+    ## exit TryCatch with error code
+    return(1)
+  }
+)
+## stop if error code exists
+if (! is.null(error)) { stop("Caught error in input arguments") }
+
+#_______________________________________________________________________________
+## args[1]: input structure
+#args[1] = "/mnt/databases/MD/PKM2/3BJT_monomer_apo/md0/3BJT_md0_ca.pdb"
+message("  The atom order and number of the input structure and input trajectory must match.\
+Please note that potential mis-matches are unlikely to be detected by DCDencode.")
 message(paste("Input structure:", str))
 ## structure name
 str_name = unlist(strsplit(str, "\\.", perl = TRUE))[1]
@@ -36,15 +47,8 @@ str_name = unlist(strsplit(str, "\\.", perl = TRUE))[1]
 str_bio3d = bio3d::read.pdb2(str)
 
 #_______________________________________________________________________________
-## argument [2] is input trajectory
+## args[2] is input trajectory
 #args[2] = "/mnt/databases/MD/PKM2/3BJT_monomer_apo/md0/3BJT_md0_ca.dcd"
-
-if (! is.na(args[2])) {
-  traj = args[2] 
-} else {
-  stop("Need input trajectory as second argument! Usage:\")
-  'Rscript dcdencode.R <str> <traj> <confInc>'")
-}
 message(paste("Input trajectory:", traj))
 ## trajectory name
 traj_name = unlist(strsplit(traj, "\\.", perl = TRUE))[1]
@@ -52,16 +56,9 @@ traj_name = unlist(strsplit(traj, "\\.", perl = TRUE))[1]
 traj_bio3d = bio3d::read.dcd(traj)
 
 #_______________________________________________________________________________
-## argument [3] is conformation increment if trajectory has been split
+## args[3] is conformation increment if trajectory has been split
 ## the increment is added to the conformation number
-if (! is.na(args[3])) {
-  confInc = as.numeric(args[3])
-  message(paste("Output SA string numbering will start at #", confInc + 1))
-} else {
-  message("  Default setting: Output SA string numbering will start at #1.\
-  For a different start number set conformation increment as third argument.\
-  Example: If the first conformation is '51', set conformation increment to '50'.")
-}
+message(paste("Output SA string numbering will start at #", confInc + 1))
 
 #_______________________________________________________________________________
 ## xyz indices of Calpha atoms only, gleaned from PDB structure
