@@ -32,7 +32,8 @@ install_github("Fraternalilab/DCDencode")
 
 
 ## Usage
-Run the script *Rscripts/pdbencode.R* in the directory containing PDB file(s):
+### Encoding
+Run the script *Rscripts/dcdencode.R* in the directory containing the DCD trajectory file:
 ```{sh}
 Rscript pdbencode.R <structure_name>.pdb <trajectory_name>.dcd <confInc>
 ```
@@ -47,6 +48,15 @@ The format of SA sequence headers is \<ID\>|\<conformation\>,
 where ID is a dot-separated structure and trajectory name,
 while conformations are numbered from 1 to N (= total number of conformations),
 plus the conformation increment (default = 0).
+
+### Splitting DCD trajectories
+Trajectories can be large and therefore the encoding routine can be memory hungry.
+To avoid running out of RAM, a script employing the *catdcd* program (VMD suite)
+is included, which facilitates splitting the trajectory into blocks:
+```{sh}
+Rscript dcdsplit.R <traj_name>.dcd <first> <last> <nConf>
+```
+After encoding all blocks, the resulting SA strings can be concatenated to the complete encoded trajectory.
 
 
 #### Copyright Holders, Authors and Maintainers 
