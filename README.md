@@ -35,7 +35,7 @@ install_github("Fraternalilab/DCDencode")
 ### Encoding
 Run the script *Rscripts/dcdencode.R* in the directory containing the DCD trajectory file:
 ```{sh}
-Rscript pdbencode.R <structure_name>.pdb <trajectory_name>.dcd <confInc>
+Rscript dcdencode.R <structure_name>.pdb <trajectory_name>.dcd <confInc>
 ```
 The first argument must be the reference PDB structure.
 The second argument must be the DCD trajectory.
