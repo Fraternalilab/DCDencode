@@ -22,7 +22,7 @@ traj = as.character(args[2])
 ## argument [3] is conformation increment if trajectory has been split
 confInc = abs(as.integer(args[3]))
 
-error = tryCatch(stopifnot(nchar(args[1]) < 1, nchar(args[2]) < 1),
+error = tryCatch(stopifnot(nchar(args[1]) > 1, nchar(args[2]) > 1),
   error = function(e) {
     ## stopifnot error message
     message(e)
